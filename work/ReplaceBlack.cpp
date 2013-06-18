@@ -1,3 +1,6 @@
+/**
+ * Replace ' ' character in the given string with "%20"
+ */
 #include <cstdio>
 #include <iostream>
 #define PR(x) cout << #x << " = " << x << endl

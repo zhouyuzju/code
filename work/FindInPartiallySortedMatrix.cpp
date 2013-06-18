@@ -1,3 +1,6 @@
+/**
+ * query a  number in the given matrix
+ */
 #include <cstdio>
 #include <iostream>
 #define PR(x) cout << #x << " = " << x << endl
