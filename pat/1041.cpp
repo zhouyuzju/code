@@ -1,28 +1,23 @@
 #include <iostream>
+#include <cstdio>
+#define PR(x) cout << #x << " = " << x << endl
+#define MAX 10000
 using namespace std;
 
-int main()
-{
+int main(){
 	int N;
-	cin >> N;
+	scanf("%d",&N);
+	int count[MAX] = {0};
 	int num[N];
-	int counts[10001] = {0};
-	for(int i = 0;i < N;i++)
-	{
-		cin >> num[i];
-		counts[num[i]]++;
+	for(int i = 0;i < N;i++){
+		scanf("%d",&num[i]);
+		count[num[i]]++;
 	}
-	bool found = false;
-	for(int i = 0;i < N;i++)
-	{
-		if(counts[num[i]] == 1)
-		{
-			found = true;
-			cout << num[i] << endl;
-			break;
+	for(int i = 0;i < N;i++){
+		if(count[num[i]] == 1){
+			printf("%d\n",num[i]);
+			return 0;
 		}
 	}
-	if(!found)
-		cout << "None" << endl;
-	return 0;
+	printf("None\n");
 }
