@@ -1,46 +1,46 @@
 #include <iostream>
-#include <string>
+#include <cstdio>
 #include <cstring>
 #include <algorithm>
+#define PR(x) cout << #x << " = " << x << endl
+#define MAX 10
 using namespace std;
 
-bool lessThan(string a,string b)
-{
-	string astr = a + b;
-	string bstr = b + a; 
-	int len = astr.length();
-	for(int i = 0;i < 17;i++)
-	{
-		if(astr[i] < bstr[i])
-			return true;
-		else if(astr[i] > bstr[i])
-			return false;
-	}
-	return true;
+bool mycmp(char *a, char* b){
+	char ab[2 * MAX], ba[2 * MAX];
+	strcpy(ab,a);
+	strcat(ab,b);
+	strcpy(ba,b);
+	strcat(ba,a);
+	if(strcmp(ab,ba) < 0)
+		return true;
+	else
+		return false;
 }
 
-int main()
-{
+int main(){
 	int N;
-	cin >> N;
-	string nums[N];
-	for(int i = 0;i < N;i++)
-		cin >> nums[i];
-	sort(nums,nums + N,lessThan);
-	bool flag = false;
-	for(int i = 0;i < N;i++)
-	{
-		if(nums[i] != "0")
-		{
-			if(!flag)
-			{
-				cout << atoi(nums[i].c_str());
-			}
-			else
-				cout << nums[i];
-			flag = true;
-		}		
+	scanf("%d",&N);
+	char* num[N];
+	for(int i = 0;i < N;i++){
+		char* str = new char[MAX];
+		scanf("%s",str);
+		num[i] = str;
 	}
-	cout << endl;
+	sort(num, num + N, mycmp);
+	char min[MAX * N + 1];
+	if(N == 0)
+		return 0;
+	strcpy(min,num[0]);
+	for(int i = 1;i < N;i++)
+		strcat(min,num[i]);
+	bool flag = false;
+	for(int i = 0;min[i] != '\0';i++){
+		if(min[i] != '0')
+			flag = true;
+		if(flag || (!flag && min[i + 1] == '\0'))
+			printf("%c",min[i]);
+	}
+	printf("\n");
 	return 0;
 }
